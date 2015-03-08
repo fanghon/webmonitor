@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import linkcrawler.datatypes.*?>
+<?import linkcrawler.datatypes.LinkModel?>
+<?scenebuilder-classpath-element C:/Users/Shadowmaster/Desktop/LinkCrawler_vTRUNK/LinkCrawler_vTRUNK/LinkCrawler_vTRUNK.jar?>
+
+<AnchorPane id="AnchorPane" disable="false" focusTraversable="false" minHeight="-1.0" minWidth="-1.0" prefHeight="607.0" prefWidth="779.9998779296875" snapToPixel="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <MenuBar layoutX="0.0" layoutY="0.0" prefHeight="26.0" prefWidth="779.9998779296875" useSystemMenuBar="false">
+      <menus>
+        <Menu mnemonicParsing="false" text="文件">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#handleCloseActionFromMenu" text="退出应用" fx:id="exitMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="Q" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="配置项目" fx:id="optionsMenu">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#openExclusionWindows" text="被排除的 URL" fx:id="excludeListMenuItem" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="报告" fx:id="reportsMenu">
+          <items>
+            <Menu mnemonicParsing="false" text="保存报告...">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#excelReportMenuItemActionPerformed" text="Excel" fx:id="excelReportMenuItem" />
+                <MenuItem mnemonicParsing="false" onAction="#htmlReportMenuItemActionPerformed" text="HTML" fx:id="htmlReportMenuItem" />
+                <MenuItem mnemonicParsing="false" onAction="#jsonReportMenuItemActionPerformed" text="JSON" fx:id="jsonReportMenuItem" />
+              </items>
+            </Menu>
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="帮助">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#openAboutWindows" text="关于网站链接检查系统" fx:id="aboutMenuItem" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <TabPane layoutX="14.0" layoutY="29.0" prefHeight="544.0" prefWidth="752.0" rotateGraphic="false" style="" tabClosingPolicy="UNAVAILABLE" visible="true">
+      <tabs>
+        <Tab fx:id="crawlWebsiteTab" text="检查站点">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="724.0" style="-fx-border-color: #000000;&#10;-fx-border-width: 1px;&#10;">
+              <children>
+                <Label layoutX="14.0" layoutY="14.0" prefWidth="31.0" text="URL:" />
+                <TextField fx:id="domainToCheckTextField" layoutX="45.0" layoutY="11.0" prefWidth="584.0" text="http://www.jmi.edu.cn" />
+                <Button fx:id="startButton" layoutX="632.0" layoutY="11.0" mnemonicParsing="false" onAction="#startCrawling" prefWidth="53.0" text="开始" />
+                <Button fx:id="stopButton" disable="true" layoutX="687.0" layoutY="11.0" mnemonicParsing="false" onAction="#stopCrawling" prefWidth="53.0" text="停止" />
+                <Separator layoutX="14.0" layoutY="45.0" prefWidth="720.0" />
+                <Label layoutX="18.0" layoutY="52.0" prefWidth="104.0" text="检查深度:" />
+                <Label layoutX="17.0" layoutY="78.0" prefWidth="104.0" text="浏览器头:" />
+                <TextField fx:id="depthLevelSpinner" alignment="CENTER" editable="false" layoutX="121.0" layoutY="50.0" prefWidth="73.0" text="Unlimited" />
+                <Button fx:id="addLevelButton" layoutX="197.0" layoutY="50.0" mnemonicParsing="false" onAction="#increaseDepth" prefWidth="31.0" text="+" />
+                <Button fx:id="reduceLevelButton" layoutX="231.0" layoutY="50.0" mnemonicParsing="false" onAction="#reduceDepth" prefWidth="31.0" text="-" />
+                <ComboBox fx:id="browserSelection" editable="false" layoutX="121.0" layoutY="76.0" prefHeight="21.0" prefWidth="142.0" promptText="" value="Default">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Default" />
+                      <String fx:value="Mozilla Firefox 3.6" />
+                      <String fx:value="Mozilla Firefox 10" />
+                      <String fx:value="Mozilla Firefox 17" />
+                      <String fx:value="IE 6" />
+                      <String fx:value="IE 7" />
+                      <String fx:value="IE 8" />
+                      <String fx:value="IE 9" />
+                      <String fx:value="IE 10" />
+                    </FXCollections>
+                  </items>
+                </ComboBox>
+                <Label layoutX="271.0" layoutY="52.0" prefWidth="178.0" text="检查图片链接?" />
+                <CheckBox fx:id="enableImageCheckingCheckbox" layoutX="449.0" layoutY="52.0" mnemonicParsing="false" text="" />
+                <Label layoutX="271.0" layoutY="78.0" prefWidth="178.0" text="检查子站?" />
+                <CheckBox fx:id="checkSubdomainsCheckBox" layoutX="449.0" layoutY="78.0" mnemonicParsing="false" text="" />
+                <Separator layoutX="14.0" layoutY="135.0" prefWidth="720.0" />
+                <Separator layoutX="14.0" layoutY="152.0" prefWidth="720.0" />
+                <Accordion fx:id="accordionSection" layoutX="14.0" layoutY="155.0" prefHeight="344.0" prefWidth="720.0">
+                  <panes>
+                    <TitledPane fx:id="x2" animated="false" disable="false" text="统计">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <children>
+                            <PieChart id="PieChart" fx:id="pieChartG" layoutX="14.0" layoutY="11.0" prefHeight="275.0" prefWidth="315.0" />
+                            <Separator layoutX="348.0" layoutY="7.0" orientation="VERTICAL" prefHeight="280.0" />
+                            <Label layoutX="374.0" layoutY="14.0" prefHeight="26.0" prefWidth="178.0" text="检查系统状态:">
+                              <font>
+                                <Font name="System Bold" size="15.0" />
+                              </font>
+                            </Label>
+                            <Label fx:id="engineStatus" layoutX="552.0" layoutY="18.0" prefWidth="158.0" text="未运行">
+                              <font>
+                                <Font size="14.0" />
+                              </font>
+                            </Label>
+                            <Separator layoutX="363.0" layoutY="50.0" prefWidth="341.0" />
+                            <Label fx:id="healthPercentage" alignment="CENTER" layoutX="440.0" layoutY="53.0" prefHeight="107.0" prefWidth="198.0" text="" textAlignment="CENTER">
+                              <font>
+                                <Font size="80.0" />
+                              </font>
+                            </Label>
+                            <Label alignment="CENTER" layoutX="495.0" layoutY="160.0" prefWidth="85.0" text="链接情况" />
+                            <Separator layoutX="363.0" layoutY="184.0" prefWidth="341.0" />
+                            <Label layoutX="363.0" layoutY="200.0" prefWidth="134.0" text="Links found:">
+                              <font>
+                                <Font name="System Bold" size="12.0" fx:id="x1" />
+                              </font>
+                            </Label>
+                            <Label fx:id="linksFoundLabel" layoutX="504.0" layoutY="200.0" prefWidth="31.0" text="0" />
+                            <Label font="$x1" layoutX="363.0" layoutY="225.0" prefWidth="134.0" text="有效链接数:" />
+                            <Label fx:id="linksUPLabel" layoutX="504.0" layoutY="225.0" prefWidth="31.0" text="0" />
+                            <Label font="$x1" layoutX="363.0" layoutY="249.0" prefWidth="134.0" text="无效链接数:" />
+                            <Label fx:id="linksDownLabel" layoutX="504.0" layoutY="249.0" prefWidth="31.0" text="0" />
+                            <ProgressIndicator fx:id="progressAnimation" layoutX="648.0" layoutY="17.0" prefHeight="10.0" prefWidth="10.0" progress="-1.0" visible="false" />
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </TitledPane>
+                    <TitledPane animated="false" text="错误链接情况">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <children>
+                            <TableView fx:id="linkTable" layoutX="14.0" layoutY="14.0" prefHeight="268.0" prefWidth="688.0">
+                              <columns>
+                                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="377.0" resizable="false" text="Url" fx:id="idCol">
+                                  <cellValueFactory>
+                                    <PropertyValueFactory property="url" />
+                                  </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="174.0" resizable="false" text="内容类型" fx:id="contentCol">
+                                  <cellValueFactory>
+                                    <PropertyValueFactory property="contentType" />
+                                  </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" resizable="false" text="状态" fx:id="statusCol">
+                                  <cellValueFactory>
+                                    <PropertyValueFactory property="status" />
+                                  </cellValueFactory>
+                                </TableColumn>
+                              </columns>
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <LinkModel contentType="" status="" url="" />
+                                </FXCollections>
+                              </items>
+                            </TableView>
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </TitledPane>
+                  </panes>
+                </Accordion>
+                <Button fx:id="credentialsButton" layoutX="476.0" layoutY="102.0" mnemonicParsing="false" onAction="#setCredentialsWindow" prefWidth="256.0" text="HTTP认证设置" />
+                <Label layoutX="476.0" layoutY="78.0" prefWidth="134.0" text="HTTP 认证:" />
+                <Label fx:id="credentialsToUse" font="$x1" layoutX="609.0" layoutY="78.0" prefWidth="123.0" text="Not Set" />
+                <Label layoutX="476.0" layoutY="53.0" prefWidth="134.0" text="被排除的URL:" />
+                <Label id="credentialsToUse" fx:id="exclusionListStatusLabel" font="$x1" layoutX="609.0" layoutY="54.0" prefWidth="123.0" text="未设置" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+    <ToolBar layoutX="1.0" layoutY="581.0" minHeight="22.0" prefHeight="26.0" prefWidth="777.9998779296875">
+      <items>
+        <Label fx:id="statusMessageLabel" font="$x1" prefWidth="752.0" text="欢迎来到网站链接检查系统" />
+      </items>
+    </ToolBar>
+  </children>
+</AnchorPane>

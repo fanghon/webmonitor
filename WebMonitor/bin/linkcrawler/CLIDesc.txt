@@ -1,0 +1,37 @@
+NAME    LinkCrawler 3.0
+        Perform a Site Crawling and returns the amount of internal and external that are broken.
+
+SYNOPSIS
+        java -jar LinkCrawler.jar --site FQDN [--depth number --allowsubdomain --checkimages --basichttpusername string  --basichttppassword string --report html|json|excel]
+
+DESCRIPTION
+        --site or -s: Mandatory. Specifies the FQDN on which LinkCrawler should work on.
+        --depth or -d: Optional. Indicates how deep LinkCrawler may go within the site. 0 = Unlimited (Default value is 0)
+        --allowsubdomain: Optional. If present, Enables LinkCrawler to evaluate derived FQDNs. By default this feature is disabled.
+        --checkimages: Optional. If present, Enables LinkCrawler to check img tag for bad srcs. By default this feature is disabled.
+        --basichttpusername: Optional (mandatory if basichttppassword is present). Use this field when crawling sites protected by Basic HTTP Authentication.
+        --basichttppassword: Optional (mandatory if basichttpusername is present). Use this field when crawling sites protected by Basic HTTP Authentication.
+        --report: Optional. When present, it will generate a report of choice: HTML, JSON, Excel 
+
+EXAMPLES
+		
+		java -jar LinkCrawler.jar --site http://www.carlosumanzor.com --depth 5
+		Performs a crawling over http://www.carlosumanzor.com with a maximum depth of 5 levels
+		
+		java -jar LinkCrawler.jar --site http://www.carlosumanzor.com --allowsubdomain
+		Performs a crawling over http://www.carlosumanzor.com but it will crawl subdomains that follows the format of http://*.carlosumanzor.com
+		
+		java -jar LinkCrawler.jar --site http://www.carlosumanzor.com --checkimages
+		Performs a crawling over http://www.carlosumanzor.com but it will also check for broken images
+		
+		java -jar LinkCrawler.jar --site http://secured.carlosumanzor.com --basichttpusername myuser --basichttppassword mypass
+		Performs a crawling over http://www.carlosumanzor.com but will use Basic HTTP authentication in order to crawl the site
+
+REPORTING BUGS
+        Report bugs to Carlos Alberto Umanzor Arguedas <shadow.x07@gmail.com>
+        
+LIKE US AT:
+        Like us at http://www.facebook.com/LinkCrawler
+		
+COPYRIGHT
+        Copyright  2013, Carlos Alberto Umanzor Arguedas

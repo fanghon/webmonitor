@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="664.0" style="-fx-border-color: rgb(0,0,0);&#10;-fx-border-radius: 5;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ImageView fx:id="logoimg" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      
+    <Label layoutX="141.0" layoutY="20.0" text="网站链接检查程序">
+      <font>
+        <Font name="System Bold" size="18.0" />
+      </font>
+    </Label>
+    <Label alignment="TOP_LEFT" layoutX="141.0" layoutY="44.0" prefHeight="41.0" prefWidth="545.0" text="检查网站内的内外部链接 &#10;." />
+    <Label layoutX="141.0" layoutY="85.0" prefWidth="86.0" text="版本:">
+      <font>
+        <Font name="System Bold" size="12.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label layoutX="227.0" layoutY="85.0" text="V1.0" />
+    <Label font="$x1" layoutX="141.0" layoutY="103.0" prefWidth="85.9998779296875" text="开发者:" />
+    <Label layoutX="227.0" layoutY="103.0" prefWidth="311.0" text="方宏" />
+    <Label font="$x1" layoutX="141.0" layoutY="121.0" prefWidth="85.9998779296875" text="主页:" />
+    <Hyperlink layoutX="225.0" layoutY="118.0" prefWidth="262.0" text="https://github.com/fanghon" onAction="#goToHomePage" />
+    <TextArea editable="false" layoutX="141.0" layoutY="156.0" prefHeight="219.0" prefWidth="509.0" text="版权 [2014] 方 宏&#10;&#10;Licensed under the Apache License, Version 2.0 ." wrapText="true" />
+    <Button fx:id="closeAboutAction" layoutX="594.0" layoutY="385.0" mnemonicParsing="false" onAction="#closeAboutWindows" text="关闭" />
+  </children>
+</AnchorPane>

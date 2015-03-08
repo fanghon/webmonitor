@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.PasswordField?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.00009999999747" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Pane layoutX="14.0" layoutY="13.0" prefHeight="135.0" prefWidth="272.0">
+      <children>
+        <Label layoutX="7.0" layoutY="25.0" prefWidth="85.0" text="用户名:">
+          <font>
+            <Font name="System Bold" size="12.0" fx:id="x1" />
+          </font>
+        </Label>
+        <TextField fx:id="httpusernameTextField" layoutX="99.0" layoutY="22.0" prefWidth="166.0" />
+        <Label font="$x1" layoutX="7.0" layoutY="59.0" prefWidth="85.0" text="密码:" />
+        <PasswordField fx:id="httppasswordTextField" layoutX="99.0" layoutY="56.0" prefWidth="166.0" />
+        <Button layoutX="146.0" layoutY="96.0" mnemonicParsing="false" prefWidth="56.0" text="设置" onAction="#setCredentialsAction" />
+        <Button layoutX="209.0" layoutY="96.0" mnemonicParsing="false" prefWidth="56.0" text="清除" onAction="#clearCredentialsAction" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

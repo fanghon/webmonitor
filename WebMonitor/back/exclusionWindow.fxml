@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="459.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ListView fx:id="exclusionListView" layoutX="14.0" layoutY="10.0" prefHeight="244.0" prefWidth="431.0" />
+    <Label layoutX="14.0" layoutY="255.0" prefHeight="45.0" prefWidth="431.0" text="提示: 加入被排除URL的全部或部分字符串." wrapText="true" />
+    <Button fx:id="addStringButton" layoutX="330.0" layoutY="307.0" mnemonicParsing="false" onAction="#addStringForExclusion" text="添加" />
+    <TextField fx:id="stringToAddField" layoutX="58.0" layoutY="307.0" prefWidth="269.0" />
+    <Label layoutX="14.0" layoutY="309.0" text="被排除项:" />
+    <Button fx:id="clearAllStringsButton" layoutX="377.0" layoutY="307.0" mnemonicParsing="false" onAction="#clearStringForExclusion" text="清除列表" />
+  </children>
+</AnchorPane>
